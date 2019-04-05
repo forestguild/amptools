@@ -1,6 +1,10 @@
+require_relative 'AmpFilter.rb'
+
 module Jekyll
     class AmpPage < Jekyll::Page
+        include Jekyll::AmpFilter
         def initialize(site, base, dir, post)
+            body = (Liquid::Template.parse post.content).render site.site_payload
             self.data = post.data.clone
             self.data['layout'] = 'amp'
             @site = site
@@ -9,8 +13,8 @@ module Jekyll
             @url = dir
             @name = 'index.html'
             self.process(@name)
-            self.content = post.content
-            self.data['body'] = (Liquid::Template.parse post.content).render site.site_payload
+            self.content = amp_images(amp_iframes(body))
+            self.data['body'] = amp_images(amp_iframes(body))
             self.data['canonical_url'] = post.url
         end
     end

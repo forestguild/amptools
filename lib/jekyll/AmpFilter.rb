@@ -39,6 +39,21 @@ module Jekyll
             end
             doc.to_s
         end
+        def amp_iframes(input)
+            doc = Nokogiri::HTML.fragment(input);
+            doc.css('iframe').each do |iframe|
+                iframe.name = "amp-iframe"
+                iframe['sandbox'] = "allow-scripts allow-same-origin"
+                iframe['layout'] = "responsive"
+                if iframe['width'].to_i == 0
+                    iframe['width'] = '400px'
+                end
+                if iframe['height'].to_i == 0
+                    iframe['height'] = '200px'
+                end
+            end
+            doc.to_s
+        end
     end
 end
 
