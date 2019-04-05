@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name        = 'jekyll-amptools'
-    s.version     = '1.0.1'
+    s.version     = '1.0.2'
     s.date        = '2019-04-04'
     s.summary     = "AMP tools for jekyll, fork of juusaw/amp-jekyll"
     s.description = "AMP tools for jekyll, fork of  juusaw/amp-jekyll"
